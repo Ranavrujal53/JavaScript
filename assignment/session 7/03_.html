@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Playlist</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>My Favorite Playlist</h2>
+
+    <button onclick="addSong()">Add Song</button>
+
+    <div id="songContainer" class="container"></div>
+
+    <script>
+        const songs = [
+            "Kesariya",
+            "Believer",
+            "Shape of You",
+            "Blinding Lights",
+            "Perfect",
+            "Hanuman Chalisa",
+            "Ram Siya Ram",
+            "Jai Shri Ram",
+            "Har Har Mahadev",
+            "Shiv Tandav"
+        ];
+
+        function addSong() {
+            let randomIndex = Math.floor(Math.random() * songs.length);
+            let song = songs[randomIndex];
+
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerText = song;
+
+            document.getElementById("songContainer").appendChild(card);
+        }
+    </script>
+
+</body>
+</html>

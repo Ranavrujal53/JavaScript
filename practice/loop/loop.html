@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Table</legend>
+        <input type="text" id="num1">
+        <input type="button" value="submit" onclick="printtable()">
+        <div id="result"></div>
+    </fieldset>
+
+
+    <script>
+        function printtable(){
+            let num1 = document.getElementById('num1').value;
+            let str="";
+            for(let i=i;i<=10;i++){
+                str += `${num1} * ${i} = ${num1*i}<br>`;
+            }
+            document.getElementById("result").innerHTML=str;
+        }
+    </script>
+</body>
+</html>

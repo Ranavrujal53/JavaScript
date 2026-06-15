@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const MAX_POSTS = 100;
+        console.log("Initial Value:", MAX_POSTS);
+
+        MAX_POSTS = 200;
+        console.log("New Value:", MAX_POSTS);
+    </script>
+</body>
+</html>
+
+<!-- Output:-
+error because const variables cannot be reassigned.
+Initial Value: 100
+06_.html:13 Uncaught TypeError: Assignment to constant variable. -->

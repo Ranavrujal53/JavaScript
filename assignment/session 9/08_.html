@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Restaurants</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff4d4d;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            background: #ff4d4d;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e60000;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+            width: 300px;
+        }
+
+        li {
+            background: white;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Top 3 Favorite Zomato Restaurants</h1>
+
+    <input type="text" id="restaurantinput" placeholder="Enter restaurant name">
+    <button onclick="addrestaurant()">Add</button>
+
+    <ul id="restaurantlist"></ul>
+
+    <script>
+        window.onload = function () {
+            loadrestaurants();
+        };
+
+        function addrestaurant() {
+            let input = document.getElementById("restaurantinput");
+            let name = input.value;
+
+            if (name === "") return;
+
+            let restaurants = localStorage.getItem("restaurants");
+            restaurants = restaurants ? JSON.parse(restaurants) : [];
+
+            if (restaurants.length < 3) {
+                restaurants.push(name);
+                localStorage.setItem("restaurants", JSON.stringify(restaurants));
+            }
+
+            input.value = "";
+            loadrestaurants();
+        }
+
+        function loadrestaurants() {
+            let list = document.getElementById("restaurantlist");
+            list.innerHTML = "";
+
+            let restaurants = localStorage.getItem("restaurants");
+            restaurants = restaurants ? JSON.parse(restaurants) : [];
+
+            restaurants.forEach(function (item) {
+                let li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

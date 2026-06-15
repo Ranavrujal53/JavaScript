@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Total</title>
+</head>
+<body>
+
+<h1>Cart Total Calculator</h1>
+
+<script>
+    
+    const addToCartArrow = (...prices) => {
+        let total = 0;
+
+        for (let i = 0; i < prices.length; i++) {
+            total += prices[i];
+        }
+
+        return total;
+    };
+
+    
+    console.log(addToCartArrow(100, 200, 300));
+    console.log(addToCartArrow(499, 999));
+</script>
+
+</body>
+</html>

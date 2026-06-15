@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truthy and Falsy value</title>
+</head>
+
+<body>
+    <h1>Truthy and Falsy Values</h1>
+
+    <script>
+        function isTruthy(input) {
+            return input ? "Truthy" : "Falsy";
+        }
+
+        console.log(isTruthy(""));
+        console.log(isTruthy("hello"));
+        console.log(isTruthy(0));
+        console.log(isTruthy(1));
+        console.log(isTruthy(-5));
+        console.log(isTruthy(null));
+        console.log(isTruthy(undefined));
+        console.log(isTruthy(NaN));
+        console.log(isTruthy(false));
+        console.log(isTruthy(true));
+        console.log(isTruthy([]));
+        console.log(isTruthy([1, 2, 3]));
+        console.log(isTruthy({}));
+        console.log(isTruthy({ name: "Priya" }));
+
+    </script>
+</body>
+
+</html>

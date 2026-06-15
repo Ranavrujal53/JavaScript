@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    ul {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: white;
+      padding: 10px;
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .delete {
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Todo List (Event Delegation)</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+<script>
+
+// Add Task
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
+
+    if(task === "") return;
+
+    let li = document.createElement("li");
+
+    li.innerHTML = `
+        <span class="task-text">${task}</span>
+        <span class="delete">X</span>
+    `;
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+}
+
+// Event Delegation (ONE listener for all tasks)
+document.getElementById("taskList").addEventListener("click", function(e){
+
+    // If delete clicked
+    if(e.target.classList.contains("delete")){
+        e.target.parentElement.remove();
+    }
+
+    // If task clicked (mark done)
+    if(e.target.classList.contains("task-text")){
+        e.target.parentElement.classList.toggle("done");
+    }
+
+});
+
+</script>
+
+</body>
+</html>

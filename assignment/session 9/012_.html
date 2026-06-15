@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Wishlist</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f1f3f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2874f0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f7f9ff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>My Wishlist</h1>
+    <ul id="wishlist"></ul>
+</div>
+
+<script>
+    
+    let wishlist = [
+        { name: "iPhone 14", price: 69999 },
+        { name: "Nike Shoes", price: 4999 },
+        { name: "Samsung TV", price: 32999 }
+    ];
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    window.onload = function () {
+        let data = localStorage.getItem("wishlist");
+
+        let list = data ? JSON.parse(data) : [];
+
+        let ul = document.getElementById("wishlist");
+        ul.innerHTML = "";
+
+        list.forEach(function (item) {
+            let li = document.createElement("li");
+            li.innerHTML = item.name + " - <span class='price'>₹" + item.price + "</span>";
+            ul.appendChild(li);
+        });
+    };
+</script>
+
+</body>
+
+</html>

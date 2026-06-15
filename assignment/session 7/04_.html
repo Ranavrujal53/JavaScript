@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Username Form</title>
+</head>
+<body>
+
+    <h2>Mini Username Form</h2>
+
+    <label>Username:</label>
+    <input type="text" id="username" placeholder="Enter username" onchange="handleChange(this.value)"/>
+
+    <p id="output"></p>
+
+    <script>
+        function handleChange(value) {
+            document.getElementById("output").innerText =
+                "Username changed to: " + value;
+        }
+    </script>
+
+</body>
+</html>

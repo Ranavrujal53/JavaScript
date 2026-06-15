@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+
+.quiz-box{
+    width:100%;
+    max-width:800px;
+    background:#fff;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.quiz-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.timer{
+    background:#f1f5f9;
+    padding:10px 15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+#question{
+    margin-bottom:25px;
+    color:#222;
+    line-height:1.5;
+}
+
+.option{
+    display:block;
+    padding:15px;
+    margin-bottom:12px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.option:hover{
+    background:#f8fafc;
+    border-color:#667eea;
+}
+
+.option input{
+    margin-right:10px;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:10px;
+    background:#667eea;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#5563d6;
+}
+
+.result{
+    text-align:center;
+}
+
+.result h1{
+    margin-bottom:15px;
+}
+
+.result h2{
+    margin-bottom:20px;
+}
+
+.review-box{
+    text-align:left;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.review-box p{
+    margin:8px 0;
+}
+
+.correct{
+    color:green;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+
+    .quiz-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .timer{
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="quiz-box">
+
+    <div class="quiz-header">
+
+        <div class="timer">
+            Total Time:
+            <span id="totalTime">10:00</span>
+        </div>
+
+        <div class="timer">
+            Question Time:
+            <span id="questionTime">30</span>s
+        </div>
+
+    </div>
+
+    <h2 id="question"></h2>
+
+    <div id="options"></div>
+
+    <button class="btn" onclick="nextQuestion()">
+        Next Question
+    </button>
+
+</div>
+</head>
+<body>
+
+<script>
+
+const quizQuestions = [
+{
+    question: "What does HTML stand for?",
+    options: [
+        "Hyper Text Markup Language",
+        "High Text Machine Language",
+        "Hyper Transfer Markup Language",
+        "Home Tool Markup Language"
+    ],
+    answer: "Hyper Text Markup Language"
+},
+{
+    question: "Which language is used for styling web pages?",
+    options: ["HTML", "JQuery", "CSS", "XML"],
+    answer: "CSS"
+},
+{
+    question: "Which language is used for web development?",
+    options: ["Python", "JavaScript", "C++", "Java"],
+    answer: "JavaScript"
+},
+{
+    question: "Which symbol is used for comments in JavaScript?",
+    options: ["//", "##", "<!-- -->", "**"],
+    answer: "//"
+},
+{
+    question: "What is the correct way to declare a variable in JavaScript?",
+    options: ["var x;", "int x;", "string x;", "declare x;"],
+    answer: "var x;"
+},
+{
+    question: "Which method displays data in the console?",
+    options: ["print()", "console.log()", "document.write()", "alert()"],
+    answer: "console.log()"
+},
+{
+    question: "Which company developed JavaScript?",
+    options: ["Microsoft", "Google", "Netscape", "Apple"],
+    answer: "Netscape"
+},
+{
+    question: "What is the result of 2 + '2' in JavaScript?",
+    options: ["4", "22", "Error", "NaN"],
+    answer: "22"
+},
+{
+    question: "Which keyword is used to define a constant?",
+    options: ["var", "let", "const", "constant"],
+    answer: "const"
+},
+{
+    question: "What is the output of typeof null?",
+    options: ["null", "object", "undefined", "string"],
+    answer: "object"
+},
+{
+    question: "Which loop executes at least once?",
+    options: ["for", "while", "do...while", "foreach"],
+    answer: "do...while"
+},
+{
+    question: "Which array method adds an element at the end?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    answer: "push()"
+},
+{
+    question: "Which array method removes the last element?",
+    options: ["push()", "pop()", "shift()", "splice()"],
+    answer: "pop()"
+},
+{
+    question: "Which operator checks value and datatype?",
+    options: ["==", "=", "===", "!="],
+    answer: "==="
+},
+{
+    question: "What is the default value of an uninitialized variable?",
+    options: ["0", "null", "undefined", "false"],
+    answer: "undefined"
+},
+{
+    question: "Which function converts a string to an integer?",
+    options: ["parseInt()", "toString()", "Number()", "parseFloat()"],
+    answer: "parseInt()"
+},
+{
+    question: "Which method converts JSON text into an object?",
+    options: ["JSON.parse()", "JSON.stringify()", "parseJSON()", "toObject()"],
+    answer: "JSON.parse()"
+},
+{
+    question: "Which event occurs when a button is clicked?",
+    options: ["onload", "onmouseover", "onclick", "onchange"],
+    answer: "onclick"
+},
+{
+    question: "Which keyword refers to the current object?",
+    options: ["self", "current", "this", "object"],
+    answer: "this"
+},
+{
+    question: "Which method is used to join array elements into a string?",
+    options: ["concat()", "join()", "slice()", "split()"],
+    answer: "join()"
+}
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+let totalTime = 600;
+let questionTime = 30;
+
+let questionTimer;
+let totalTimer;
+
+let userAnswers = [];
+
+function loadQuestion() {
+
+    let q = quizQuestions[currentQuestion];
+
+    document.getElementById("question").innerText =
+        `${currentQuestion + 1}. ${q.question}`;
+
+    let html = "";
+
+    q.options.forEach(option => {
+
+        html += `
+        <label class="option">
+            <input type="radio"
+                   name="answer"
+                   value="${option}">
+            ${option}
+        </label>
+        `;
+    });
+
+    document.getElementById("options").innerHTML = html;
+
+    startQuestionTimer();
+}
+
+function startQuestionTimer() {
+
+    clearInterval(questionTimer);
+
+    let timeLeft = questionTime;
+
+    document.getElementById("questionTime").innerText =
+        timeLeft;
+
+    questionTimer = setInterval(() => {
+
+        timeLeft--;
+
+        document.getElementById("questionTime").innerText =
+            timeLeft;
+
+        if(timeLeft <= 0) {
+
+            clearInterval(questionTimer);
+
+            nextQuestion();
+        }
+
+    }, 1000);
+}
+
+function nextQuestion() {
+
+    let selected =
+        document.querySelector('input[name="answer"]:checked');
+
+    let selectedAnswer = "Not Answered";
+
+    if(selected) {
+
+        selectedAnswer = selected.value;
+
+        if(selected.value ===
+           quizQuestions[currentQuestion].answer) {
+
+            score++;
+        }
+    }
+
+    userAnswers.push({
+        question: quizQuestions[currentQuestion].question,
+        selected: selectedAnswer,
+        correct: quizQuestions[currentQuestion].answer
+    });
+
+    clearInterval(questionTimer);
+
+    currentQuestion++;
+
+    if(currentQuestion < quizQuestions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        finishQuiz();
+    }
+}
+
+function startTotalTimer() {
+
+    totalTimer = setInterval(() => {
+
+        totalTime--;
+
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+
+        document.getElementById("totalTime").innerText =
+            `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
+        if(totalTime <= 0) {
+
+            finishQuiz();
+        }
+
+    }, 1000);
+}
+
+function finishQuiz() {
+
+    clearInterval(questionTimer);
+    clearInterval(totalTimer);
+
+    let resultHTML = `
+        <div class="result">
+            <h1>🎉 Quiz Completed!</h1>
+
+            <h2>Score: ${score}/${quizQuestions.length}</h2>
+
+            <p>Total Questions: ${quizQuestions.length}</p>
+
+            <p>Correct Answers: ${score}</p>
+
+            <p>Wrong Answers:
+               ${quizQuestions.length - score}</p>
+
+            <hr>
+
+            <h2>Answer Review</h2>
+    `;
+
+    userAnswers.forEach((item, index) => {
+
+        let status =
+            item.selected === item.correct
+            ? "✅ Correct"
+            : "❌ Wrong";
+
+        resultHTML += `
+            <div style="
+                border:1px solid #ccc;
+                padding:15px;
+                margin:15px 0;
+                border-radius:10px;
+                text-align:left;
+            ">
+
+                <h3>Question ${index + 1}</h3>
+
+                <p>
+                    <strong>Question:</strong>
+                    ${item.question}
+                </p>
+
+                <p>
+                    <strong>Your Answer:</strong>
+                    ${item.selected}
+                </p>
+
+                <p>
+                    <strong>Correct Answer:</strong>
+                    ${item.correct}
+                </p>
+
+                <p>
+                    <strong>Result:</strong>
+                    ${status}
+                </p>
+
+            </div>
+        `;
+    });
+
+    resultHTML += `
+        <button onclick="location.reload()">
+            Restart Quiz
+        </button>
+    </div>`;
+
+    document.querySelector(".quiz-box").innerHTML =
+        resultHTML;
+}
+
+loadQuestion();
+startTotalTimer();
+
+</script>
+
+</body>
+</html>

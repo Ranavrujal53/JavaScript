@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider image</title>
+</head>
+<body>
+ <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#0f172a,#1e293b);
+        }
+
+        .main{
+            width: 700px;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .main img{
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid white;
+        }
+
+        button{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 14px 22px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(6px);
+        }
+
+        button:hover{
+            background: white;
+            color: black;
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        #left{
+            left: -20px;
+        }
+
+        #right{
+            right: -20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <button id="left">◀</button>
+        <button id="right">▶</button>
+
+        <img src="https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_640.jpg" alt="" id="img-1">
+
+        <img src="https://st5.depositphotos.com/1157740/69377/i/450/depositphotos_693770688-stock-photo-big-tiger-sit-wood-wild.jpg" alt="" id="img-2" style="display:none;">
+
+        <img src="https://media.istockphoto.com/id/1151557849/photo/tiger-is-in-the-zoo.jpg?s=612x612&w=0&k=20&c=DRIm2lzkec4WcTCokE6NCCVqg967iGQMxcgU7uSMDik=" alt="" id="img-3" style="display:none;">
+    </div>
+<script>
+
+    let counter = 1;
+// rigth button
+    document.getElementById('right').addEventListener('click', function () {
+
+        console.log('before', counter);
+
+        let preimg = 'img-' + counter;
+        document.getElementById(preimg).style.display = "none";
+
+        if (counter == 3) {
+            counter = 0;
+        }
+
+        counter++;
+
+        let curimg = 'img-' + counter;
+
+        console.log('after', counter);
+
+        document.getElementById(curimg).style.display = "block";
+
+    });
+
+// left button
+    document.getElementById('left').addEventListener('click', function () {
+
+        let preimg = 'img-' + counter;
+
+        console.log('before', counter);
+
+        document.getElementById(preimg).style.display = "none";
+
+        counter--;
+
+        if (counter < 1) {
+            counter = 3;
+        }
+
+        console.log('after', counter);
+
+        let curimg = 'img-' + counter;
+
+        document.getElementById(curimg).style.display = "block";
+
+    });
+
+</script>
+</body>
+</html>

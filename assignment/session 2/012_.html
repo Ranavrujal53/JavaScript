@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primitive Type (String) -- Reference Type (Object)</title>
+</head>
+<body>
+    <h1>Primitive Type (String) -- Reference Type (Object)</h1>
+
+    <script>
+
+        // Primitive Type (String)
+
+        let favfood = "Pizaa";
+        let favfoodcopy = favfood;
+
+        favfood = 'burger';
+
+        console.log("favFood:", favfood);
+        console.log("favFoodCopy:", favfoodcopy);
+
+        // Reference Type (Object)
+
+        let zomatoUser = {
+            city: 'Ahmedabad'
+        };
+
+        let anotherUser = zomatoUser;
+
+        anotherUser.city = 'surat';
+
+        console.log("zomatoUser:", zomatoUser);
+console.log("anotherUser:", anotherUser);
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <fieldset>
+        <legend>Simple Calc</legend>
+
+        <label>Enter num1</label>
+        <input type="text" id="num1">
+
+        <label>Enter num2</label>
+        <input type="text" id="num2">
+
+        <br><br>
+
+        <button onclick="simplecalc()">Calculate</button>
+
+        <h3 id="result"></h3>
+    </fieldset>
+
+</body>
+
+<script>
+
+function simplecalc(){
+
+    let num1 = +document.getElementById('num1').value;
+    let num2 = +document.getElementById('num2').value;
+
+    let str = `
+        add = ${num1 + num2}<br>
+        sub = ${num1 - num2}<br>
+        mul = ${num1 * num2}<br>
+        div = ${num1 / num2}<br>
+        mod = ${num1 % num2}<br>
+    `;
+
+    document.getElementById('result').innerHTML = str;
+}
+
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .movie {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #eee;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b52a37;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>My Movie List 🎬</h2>
+
+    <div class="movie">
+        <span>Avengers</span>
+        <button class="remove">Remove</button>
+    </div>
+
+    <div class="movie">
+        <span>Inception</span>
+        <button class="remove">Remove</button>
+    </div>
+
+    <div class="movie">
+        <span>Interstellar</span>
+        <button class="remove">Remove</button>
+    </div>
+</div>
+
+<script>
+    const buttons = document.querySelectorAll(".remove");
+
+    buttons.forEach(function(button) {
+        button.addEventListener("click", function () {
+            
+            this.parentElement.remove();
+        });
+    });
+</script>
+
+</body>
+</html>

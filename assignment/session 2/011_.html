@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primitive Type (String)-- Reference Type (Array)</title>
+</head>
+<body>
+    <h1>Primitive Type (String)-- Reference Type (Array)</h1>
+    <script>
+        // Primitive Type (String)
+        let user1 = 'priya';
+        let user2 = user1;
+
+        user1 = 'Riya';
+
+        console.log("user1:",user1);
+        console.log("user2:",user2);
+        
+        // Reference Type (Array)
+         
+        let favapp1 = ['Instagram', 'Spotify'];
+        let favapp2 = favapp1;
+
+        favapp1.push("Zomato");
+
+        console.log("favApps1:", favapp1);
+        console.log("favApps2:", favapp2);
+    </script>
+</body>
+</html>

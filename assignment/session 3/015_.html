@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function orderfood(loggedin, paymentmethod) {
+            return loggedin && paymentmethod;
+
+        }
+
+        console.log(orderfood(true, true));
+        console.log(orderfood(true, false));
+        console.log(orderfood(false, true));
+        console.log(orderfood(false, false));
+    </script>
+</body>
+
+</html>

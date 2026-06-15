@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini E-Commerce Cart</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      gap: 40px;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    .products, .cart {
+      width: 50%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .product {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .qty-btn {
+      margin: 0 5px;
+    }
+
+    .remove {
+      color: red;
+      cursor: pointer;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PRODUCTS -->
+<div class="products">
+  <h2>Products</h2>
+
+  <div class="product">
+    <span>Mobile - ₹5000</span>
+    <button class="add" data-name="Mobile" data-price="5000">Add</button>
+  </div>
+
+  <div class="product">
+    <span>Laptop - ₹30000</span>
+    <button class="add" data-name="Laptop" data-price="30000">Add</button>
+  </div>
+
+  <div class="product">
+    <span>Headphones - ₹1500</span>
+    <button class="add" data-name="Headphones" data-price="1500">Add</button>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart">
+  <h2>Cart</h2>
+
+  <div id="cartContainer"></div>
+
+  <div class="total">
+    Total: ₹<span id="total">0</span>
+  </div>
+</div>
+
+<script>
+
+let cart = {};
+
+// Add to cart (Event Delegation)
+document.querySelector(".products").addEventListener("click", function(e){
+
+    if(e.target.classList.contains("add")){
+
+        let name = e.target.dataset.name;
+        let price = parseInt(e.target.dataset.price);
+
+        if(cart[name]){
+            cart[name].qty += 1;
+        } else {
+            cart[name] = {price: price, qty: 1};
+        }
+
+        renderCart();
+    }
+});
+
+
+// Cart event delegation (increase, decrease, remove)
+document.getElementById("cartContainer").addEventListener("click", function(e){
+
+    let name = e.target.dataset.name;
+
+    if(e.target.classList.contains("inc")){
+        cart[name].qty += 1;
+    }
+
+    if(e.target.classList.contains("dec")){
+        cart[name].qty -= 1;
+
+        if(cart[name].qty <= 0){
+            delete cart[name];
+        }
+    }
+
+    if(e.target.classList.contains("remove")){
+        delete cart[name];
+    }
+
+    renderCart();
+});
+
+
+// Render Cart
+function renderCart(){
+
+    let container = document.getElementById("cartContainer");
+    container.innerHTML = "";
+
+    let total = 0;
+
+    for(let item in cart){
+
+        let {price, qty} = cart[item];
+        total += price * qty;
+
+        let div = document.createElement("div");
+        div.classList.add("cart-item");
+
+        div.innerHTML = `
+            <span>${item} - ₹${price}</span>
+
+            <div>
+                <button class="qty-btn dec" data-name="${item}">-</button>
+                ${qty}
+                <button class="qty-btn inc" data-name="${item}">+</button>
+                <span class="remove" data-name="${item}">X</span>
+            </div>
+        `;
+
+        container.appendChild(div);
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>push and pop</title>
+</head>
+
+<body>
+    <h1>push and pop</h1>
+
+    <script>
+        const playlists = [
+            {
+                name: "Bollywood Vibes",
+                creator: "User A",
+                numberOfSongs: 50,
+                genre: "Bollywood"
+            },
+            {
+                name: "Gym Motivation",
+                creator: "User B",
+                numberOfSongs: 35,
+                genre: "EDM"
+            },
+            {
+                name: "Chill Lo-fi",
+                creator: "User C",
+                numberOfSongs: 60,
+                genre: "Lo-fi"
+            }
+        ];
+
+        playlists.push({
+            name: "My Favorite Rock Mix",
+            creator: "Rana Vrujal",
+            numberOfSongs: 40,
+            genre: "Rock"
+        });
+
+        console.log("After push:", playlists);
+
+        playlists.pop();
+
+        console.log("After pop:", playlists);
+    </script>
+</body>
+
+</html>

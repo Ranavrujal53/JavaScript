@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analog Clock</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#222;
+}
+
+.clock{
+    width:350px;
+    height:350px;
+    border:8px solid white;
+    border-radius:50%;
+    position:relative;
+
+    /* Change image path here */
+    background-image:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
+    background-size:cover;
+    background-position:center;
+
+    overflow:hidden;
+}
+
+/* Dark overlay */
+.clock::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    border-radius:50%;
+}
+
+.number{
+    position:absolute;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    transform:translate(-50%,-50%);
+    z-index:2;
+    text-shadow:2px 2px 5px black;
+}
+
+.hand{
+    position:absolute;
+    left:50%;
+    bottom:50%;
+    transform-origin:bottom center;
+    z-index:2;
+}
+
+.hour{
+    width:8px;
+    height:80px;
+    background:white;
+    margin-left:-4px;
+    border-radius:10px;
+}
+
+.minute{
+    width:5px;
+    height:110px;
+    background:lime;
+    margin-left:-2.5px;
+    border-radius:10px;
+}
+
+.second{
+    width:2px;
+    height:130px;
+    background:red;
+    margin-left:-1px;
+}
+
+.center{
+    width:18px;
+    height:18px;
+    background:red;
+    border-radius:50%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:3;
+}
+
+</style>
+</head>
+<body>
+
+<div class="clock" id="clock">
+
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand second" id="second"></div>
+
+    <div class="center"></div>
+
+</div>
+
+<script>
+
+// Create numbers 1 to 12
+let clock = document.getElementById("clock");
+
+for(let i = 1; i <= 12; i++){
+
+    let number = document.createElement("div");
+    number.classList.add("number");
+    number.innerText = i;
+
+    let angle = (i * 30 - 90) * Math.PI / 180;
+
+    let radius = 145;
+
+    let x = 175 + radius * Math.cos(angle);
+    let y = 175 + radius * Math.sin(angle);
+
+    number.style.left = x + "px";
+    number.style.top = y + "px";
+
+    clock.appendChild(number);
+}
+
+// Clock Function
+function updateClock(){
+
+    let date = new Date();
+
+    let hours = date.getHours() % 12;
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+
+    let hourDeg = hours * 30 + minutes * 0.5;
+    let minuteDeg = minutes * 6 + seconds * 0.1;
+    let secondDeg = seconds * 6;
+
+    document.getElementById("hour").style.transform =
+        `rotate(${hourDeg}deg)`;
+
+    document.getElementById("minute").style.transform =
+        `rotate(${minuteDeg}deg)`;
+
+    document.getElementById("second").style.transform =
+        `rotate(${secondDeg}deg)`;
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>

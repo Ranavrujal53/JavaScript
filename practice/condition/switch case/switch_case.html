@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Image Themes</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#0f172a,#1e293b);
+            padding: 20px;
+        }
+
+        .container{
+            width: 500px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
+        }
+
+        h1{
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        img{
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.5s;
+        }
+
+        .buttons{
+            margin-top: 20px;
+        }
+
+        button{
+            padding: 10px 16px;
+            margin: 6px;
+            border: none;
+            border-radius: 10px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        button:hover{
+            transform: scale(1.05);
+            background: #2563eb;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Image Theme Effects</h1>
+
+        <img src="mahadev.png" id="img1">
+
+        <div class="buttons">
+
+            <button onclick="ChangeImg('blur')">Blur</button>
+
+            <button onclick="ChangeImg('bright')">Brightness</button>
+
+            <button onclick="ChangeImg('contrast')">Contrast</button>
+
+            <button onclick="ChangeImg('gray')">GrayScale</button>
+
+            <button onclick="ChangeImg('invert')">Invert</button>
+
+            <button onclick="ChangeImg('sepia')">Sepia</button>
+
+            <button onclick="ChangeImg('shadow')">Shadow</button>
+
+            <button onclick="ChangeImg('rotate')">Hue Rotate</button>
+
+            <button onclick="ChangeImg('saturate')">Saturate</button>
+
+            <button onclick="ChangeImg('opacity')">Opacity</button>
+
+            <!-- New Themes -->
+
+            <button onclick="ChangeImg('vintage')">Vintage</button>
+
+            <button onclick="ChangeImg('cold')">Cold</button>
+
+            <button onclick="ChangeImg('warm')">Warm</button>
+
+            <button onclick="ChangeImg('neon')">Neon</button>
+
+            <button onclick="ChangeImg('dream')">Dream</button>
+
+            <button onclick="ChangeImg('gold')">Golden</button>
+
+            <button onclick="ChangeImg('pink')">Pink Glow</button>
+
+            <button onclick="ChangeImg('dark')">Dark Mode</button>
+
+            <button onclick="ChangeImg('comic')">Comic</button>
+
+            <button onclick="ChangeImg('reset')">Reset</button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function ChangeImg(filtername){
+
+            let img = document.getElementById('img1');
+
+            switch(filtername){
+
+                case 'blur':
+                    img.style.filter = 'blur(4px)';
+                break;
+
+                case 'bright':
+                    img.style.filter = 'brightness(180%)';
+                break;
+
+                case 'contrast':
+                    img.style.filter = 'contrast(250%)';
+                break;
+
+                case 'gray':
+                    img.style.filter = 'grayscale(100%)';
+                break;
+
+                case 'invert':
+                    img.style.filter = 'invert(100%)';
+                break;
+
+                case 'sepia':
+                    img.style.filter = 'sepia(100%)';
+                break;
+
+                case 'shadow':
+                    img.style.filter = 'drop-shadow(10px 10px 15px black)';
+                break;
+
+                case 'rotate':
+                    img.style.filter = 'hue-rotate(180deg)';
+                break;
+
+                case 'saturate':
+                    img.style.filter = 'saturate(300%)';
+                break;
+
+                case 'opacity':
+                    img.style.filter = 'opacity(50%)';
+                break;
+
+                case 'vintage':
+                    img.style.filter = 'sepia(70%) contrast(120%)';
+                break;
+
+                case 'cold':
+                    img.style.filter = 'hue-rotate(180deg) brightness(120%)';
+                break;
+
+                case 'warm':
+                    img.style.filter = 'sepia(40%) saturate(200%)';
+                break;
+
+                case 'neon':
+                    img.style.filter = 'brightness(150%) contrast(200%) saturate(300%)';
+                break;
+
+                case 'dream':
+                    img.style.filter = 'blur(1px) brightness(120%) opacity(90%)';
+                break;
+
+                case 'gold':
+                    img.style.filter = 'sepia(90%) hue-rotate(-20deg) saturate(250%)';
+                break;
+
+                case 'pink':
+                    img.style.filter = 'hue-rotate(300deg) saturate(250%)';
+                break;
+
+                case 'dark':
+                    img.style.filter = 'brightness(40%) contrast(140%)';
+                break;
+
+                case 'comic':
+                    img.style.filter = 'contrast(300%) saturate(400%)';
+                break;
+
+                case 'reset':
+                    img.style.filter = 'none';
+                break;
+
+                default:
+                    console.log('Invalid Choice');
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Username Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 5px rgba(108,99,255,0.5);
+        }
+
+        p {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Mini Username Form</h2>
+
+        <label>Username:</label>
+        <input type="text" id="username" placeholder="Enter username"
+               onchange="handleChange(this.value)" />
+
+        <p id="output"></p>
+    </div>
+
+    <script>
+        function handleChange(value) {
+            document.getElementById("output").innerText =
+                "Username changed to: " + value;
+        }
+    </script>
+
+</body>
+</html>

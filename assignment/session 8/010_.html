@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>splice()</title>
+</head>
+
+<body>
+    <h1>splice()</h1>
+
+    <script>
+        const playlists = [
+            {
+                name: "Bollywood Vibes",
+                creator: "User A",
+                numberOfSongs: 50
+            },
+            {
+                name: "Gym Motivation",
+                creator: "User B",
+                numberOfSongs: 35
+            },
+            {
+                name: "Chill Lo-fi",
+                creator: "User C",
+                numberOfSongs: 60
+            }
+        ];
+
+        playlists.splice(1, 1, {
+            name: "Party Mix 2026",
+            creator: "Rana Vrujal",
+            numberOfSongs: 45
+        });
+
+        console.log(playlists);
+    </script>
+</body>
+
+</html>

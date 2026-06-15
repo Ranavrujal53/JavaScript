@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced 3D Image Slider</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:
+    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
+    url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1400");
+    background-size:cover;
+    background-position:center;
+}
+
+/* Animated Background Glow */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:orange;
+    border-radius:50%;
+    filter:blur(200px);
+    top:-100px;
+    left:-100px;
+    animation:moveGlow 8s infinite alternate;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:deeppink;
+    border-radius:50%;
+    filter:blur(200px);
+    bottom:-100px;
+    right:-100px;
+    animation:moveGlow2 8s infinite alternate;
+}
+
+@keyframes moveGlow{
+    100%{
+        transform:translate(100px,100px);
+    }
+}
+
+@keyframes moveGlow2{
+    100%{
+        transform:translate(-100px,-100px);
+    }
+}
+
+/* Main Slider */
+
+.main{
+    width:850px;
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.6),
+    inset 0 0 20px rgba(255,255,255,0.08);
+    padding:20px;
+}
+
+/* Heading */
+
+.title{
+    text-align:center;
+    color:white;
+    font-size:38px;
+    margin-bottom:20px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    text-shadow:
+    0 0 10px orange,
+    0 0 20px orange;
+}
+
+/* Slider Box */
+
+.slider{
+    position:relative;
+    width:100%;
+    height:500px;
+    overflow:hidden;
+    border-radius:25px;
+}
+
+/* Images */
+
+.slider img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:25px;
+    opacity:0;
+    transform:scale(1.2) rotate(3deg);
+    transition:1s;
+}
+
+.slider img.active{
+    opacity:1;
+    transform:scale(1) rotate(0deg);
+}
+
+/* Overlay */
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+    z-index:2;
+}
+
+/* Caption */
+
+.caption{
+    position:absolute;
+    bottom:30px;
+    left:30px;
+    color:white;
+    z-index:3;
+    animation:slideUp 1s;
+}
+
+.caption h2{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.caption p{
+    font-size:16px;
+    opacity:0.8;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(50px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* Buttons */
+
+button{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:65px;
+    height:65px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    z-index:5;
+    color:white;
+    font-size:24px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+button:hover{
+    background:orange;
+    transform:translateY(-50%) scale(1.1);
+    box-shadow:
+    0 0 20px orange,
+    0 0 40px orange;
+}
+
+#left{
+    left:20px;
+}
+
+#right{
+    right:20px;
+}
+
+/* Dots */
+
+.dots{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:20px;
+}
+
+.dot{
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.3);
+    transition:0.4s;
+    cursor:pointer;
+}
+
+.dot.active{
+    width:45px;
+    border-radius:20px;
+    background:orange;
+    box-shadow:0 0 15px orange;
+}
+
+/* Progress Bar */
+
+.progress{
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:5px;
+    background:orange;
+    animation:progress 5s linear infinite;
+    z-index:10;
+}
+
+@keyframes progress{
+    from{
+        width:0%;
+    }
+    to{
+        width:100%;
+    }
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .main{
+        width:95%;
+    }
+
+    .slider{
+        height:350px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .caption h2{
+        font-size:25px;
+    }
+
+    button{
+        width:50px;
+        height:50px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+    <h1 class="title">Wild Tiger Slider</h1>
+
+    <div class="slider">
+
+        <div class="progress"></div>
+
+        <button id="left">&#10094;</button>
+        <button id="right">&#10095;</button>
+
+        <div class="overlay"></div>
+
+        <img src="https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_640.jpg" class="active">
+
+        <img src="https://st5.depositphotos.com/1157740/69377/i/450/depositphotos_693770688-stock-photo-big-tiger-sit-wood-wild.jpg">
+
+        <img src="https://media.istockphoto.com/id/1151557849/photo/tiger-is-in-the-zoo.jpg?s=612x612&w=0&k=20&c=DRIm2lzkec4WcTCokE6NCCVqg967iGQMxcgU7uSMDik=">
+
+        <div class="caption">
+            <h2 id="title">Royal Tiger</h2>
+            <p id="desc">Powerful wild animal in nature.</p>
+        </div>
+
+    </div>
+
+    <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+</div>
+
+<!-- REPLACE YOUR SCRIPT WITH THIS ADVANCED JS -->
+
+<script>
+
+let images = document.querySelectorAll(".slider img");
+let dots = document.querySelectorAll(".dot");
+
+let title = document.getElementById("title");
+let desc = document.getElementById("desc");
+
+let slider = document.querySelector(".slider");
+
+let data = [
+
+    {
+        title:"Royal Tiger",
+        desc:"Powerful wild animal in nature."
+    },
+
+    {
+        title:"Wild Hunter",
+        desc:"Tiger resting inside deep forest."
+    },
+
+    {
+        title:"King Of Jungle",
+        desc:"Fearless predator with strong vision."
+    }
+
+];
+
+let counter = 0;
+
+/* SOUND EFFECT */
+
+let clickSound = new Audio("https://www.soundjay.com/buttons/sounds/button-09.mp3");
+
+/* SHOW SLIDE */
+
+function showSlide(index){
+
+    images.forEach((img)=>{
+
+        img.classList.remove("active");
+
+    });
+
+    dots.forEach((dot)=>{
+
+        dot.classList.remove("active");
+
+    });
+
+    images[index].classList.add("active");
+
+    dots[index].classList.add("active");
+
+    title.style.opacity = 0;
+    desc.style.opacity = 0;
+
+    setTimeout(()=>{
+
+        title.innerHTML = data[index].title;
+        desc.innerHTML = data[index].desc;
+
+        title.style.opacity = 1;
+        desc.style.opacity = 1;
+
+    },300);
+
+}
+
+/* NEXT SLIDE */
+
+function nextSlide(){
+
+    counter++;
+
+    if(counter >= images.length){
+
+        counter = 0;
+
+    }
+
+    clickSound.play();
+
+    showSlide(counter);
+
+}
+
+/* PREVIOUS SLIDE */
+
+function prevSlide(){
+
+    counter--;
+
+    if(counter < 0){
+
+        counter = images.length - 1;
+
+    }
+
+    clickSound.play();
+
+    showSlide(counter);
+
+}
+
+/* BUTTON EVENTS */
+
+document.getElementById("right").onclick = ()=>{
+
+    nextSlide();
+
+};
+
+document.getElementById("left").onclick = ()=>{
+
+    prevSlide();
+
+};
+
+/* AUTO SLIDE */
+
+let autoSlide = setInterval(nextSlide,5000);
+
+/* PAUSE ON HOVER */
+
+slider.addEventListener("mouseenter",()=>{
+
+    clearInterval(autoSlide);
+
+});
+
+slider.addEventListener("mouseleave",()=>{
+
+    autoSlide = setInterval(nextSlide,5000);
+
+});
+
+/* KEYBOARD CONTROL */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key === "ArrowRight"){
+
+        nextSlide();
+
+    }
+
+    if(e.key === "ArrowLeft"){
+
+        prevSlide();
+
+    }
+
+});
+
+/* MOUSE MOVE 3D EFFECT */
+
+document.addEventListener("mousemove",(e)=>{
+
+    let x = (window.innerWidth / 2 - e.pageX) / 30;
+    let y = (window.innerHeight / 2 - e.pageY) / 30;
+
+    slider.style.transform = `
+    
+    rotateY(${x}deg)
+    rotateX(${y}deg)
+
+    `;
+
+});
+
+/* DOUBLE CLICK FULLSCREEN */
+
+slider.addEventListener("dblclick",()=>{
+
+    if(!document.fullscreenElement){
+
+        slider.requestFullscreen();
+
+    }else{
+
+        document.exitFullscreen();
+
+    }
+
+});
+
+/* RANDOM PARTICLE COLOR */
+
+let particles = document.querySelectorAll(".particles span");
+
+particles.forEach((particle)=>{
+
+    let colors = ["orange","deeppink","cyan","lime","yellow"];
+
+    let random = Math.floor(Math.random()*colors.length);
+
+    particle.style.background = colors[random];
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mouse Coordinates</title>
+  <style>
+    #box {
+      width: 400px;
+      height: 300px;
+      background-color: lightblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="box">Click anywhere here</div>
+
+<p id="output">Coordinates will appear here</p>
+
+<script>
+  const box = document.getElementById("box");
+  const output = document.getElementById("output");
+
+  box.addEventListener("click", function(event) {
+    const x = event.clientX;
+    const y = event.clientY;
+
+    output.textContent = "X: " + x + " | Y: " + y;
+  });
+</script>
+
+</body>
+</html>

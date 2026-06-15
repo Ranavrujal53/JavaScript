@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Restaurants</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4a90e2;
+        }
+
+        button {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #357abd;
+        }
+
+        .clear-btn {
+            background: #ff4d4d;
+            color: white;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .clear-btn:hover {
+            background: #d93636;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #f7f9ff;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Top 3 Restaurants</h1>
+
+        <div class="input-area">
+            <input type="text" id="restaurantinput" placeholder="Enter restaurant name">
+            <button class="add-btn" onclick="addrestaurant()">Add</button>
+        </div>
+
+        <ul id="restaurantlist"></ul>
+
+        <button class="clear-btn" onclick="clearfavorites()">Clear Favorites</button>
+    </div>
+
+    <script>
+        window.onload = function () {
+            loadrestaurants();
+        };
+
+        function addrestaurant() {
+            let input = document.getElementById("restaurantinput");
+            let name = input.value;
+
+            if (name === "") return;
+
+            let restaurants = localStorage.getItem("restaurants");
+            restaurants = restaurants ? JSON.parse(restaurants) : [];
+
+            if (restaurants.length < 15) {
+                restaurants.push(name);
+                localStorage.setItem("restaurants", JSON.stringify(restaurants));
+            }
+
+            input.value = "";
+            loadrestaurants();
+        }
+
+        function loadrestaurants() {
+            let list = document.getElementById("restaurantlist");
+            list.innerHTML = "";
+
+            let restaurants = localStorage.getItem("restaurants");
+            restaurants = restaurants ? JSON.parse(restaurants) : [];
+
+            restaurants.forEach(function (item) {
+                let li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+
+        function clearfavorites() {
+            localStorage.removeItem("restaurants");
+            loadrestaurants();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const cart = [
+            {
+                productName: "Smartphone",
+                price: 15000,
+                quantity: 1
+            },
+            {
+                productName: "Headphones",
+                price: 2000,
+                quantity: 2
+            },
+            {
+                productName: "Laptop Bag",
+                price: 1200,
+                quantity: 3
+            },
+            {
+                productName: "Power Bank",
+                price: 1800,
+                quantity: 2
+            }
+        ];
+
+        for (let i = 0; i < cart.length; i++) {
+            const product = cart[i];
+            const totalPrice = product.price * product.quantity;
+
+            console.log(
+                product.productName + " - Total Price: ₹" + totalPrice
+            );
+        }
+    </script>
+</body>
+
+</html>

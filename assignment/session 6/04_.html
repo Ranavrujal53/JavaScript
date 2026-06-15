@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            margin-top: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Playlist</h2>
+
+    <input type="text" id="songinput" placeholder="Enter the song name">
+    <button onclick="addsong()">Add Song</button>
+
+    <ul id="playlist"></ul>
+
+    <script>
+        function addsong(){
+            let songname= document.querySelector("#songinput").value;
+
+            if(songname === ""){
+                alert("Please enter a song name");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            li.textContent = songname;
+
+            document.querySelector("#playlist").appendChild(li);
+
+            document.querySelector("#songinput").value = "";
+        }
+    </script>
+</body>
+</html>

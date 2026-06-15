@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Like Button</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button {
+            background: #e1306c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c41f5a;
+        }
+
+        #count {
+            font-size: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Instagram Like Button ❤️</h2>
+
+    <button id="likeBtn">❤️ Like</button>
+
+    <div id="count">Likes: 0</div>
+</div>
+
+<script>
+    let count = 0;
+
+    const button = document.getElementById("likeBtn");
+    const display = document.getElementById("count");
+
+    button.addEventListener("click", function () {
+        count++;
+        display.innerText = "Likes: " + count;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Stopwatch</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:'Segoe UI',sans-serif;
+            transition:0.5s;
+        }
+
+        /* Light Theme */
+        .light-mode{
+            background:linear-gradient(135deg,#89f7fe,#66a6ff);
+        }
+
+        /* Dark Theme */
+        .dark-mode{
+            background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+        }
+
+        #clock{
+            width:700px;
+            max-width:95%;
+            padding:40px;
+            text-align:center;
+            border-radius:30px;
+            background:rgba(255,255,255,0.25);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(255,255,255,0.4);
+            box-shadow:0 15px 35px rgba(0,0,0,0.15);
+            transition:0.5s;
+        }
+
+        .dark-mode #clock{
+            background:rgba(17,24,39,0.8);
+            border:1px solid rgba(0,255,255,0.3);
+            box-shadow:0 0 25px rgba(0,255,255,0.4);
+        }
+
+        #icon{
+            font-size:60px;
+            margin-bottom:10px;
+        }
+
+        #title{
+            font-size:2rem;
+            font-weight:700;
+            letter-spacing:3px;
+            margin-bottom:10px;
+            color:#1e3a8a;
+        }
+
+        .dark-mode #title{
+            color:#00ffff;
+        }
+
+        #greeting{
+            font-size:1.2rem;
+            margin-bottom:15px;
+            color:#334155;
+        }
+
+        .dark-mode #greeting{
+            color:#e2e8f0;
+        }
+
+        #day{
+            font-size:2rem;
+            font-weight:bold;
+            text-transform:uppercase;
+            letter-spacing:3px;
+            color:#1e3a8a;
+        }
+
+        .dark-mode #day{
+            color:#00ffff;
+        }
+
+        #date{
+            font-size:1.3rem;
+            margin-top:10px;
+            color:#475569;
+        }
+
+        .dark-mode #date{
+            color:#cbd5e1;
+        }
+
+        #time{
+            font-size:4rem;
+            font-weight:900;
+            margin:20px 0;
+            color:#0f172a;
+        }
+
+        .dark-mode #time{
+            color:#00ffff;
+            text-shadow:0 0 10px #00ffff;
+        }
+
+        #timezone{
+            font-size:1rem;
+            color:#475569;
+            margin-top:15px;
+        }
+
+        .dark-mode #timezone{
+            color:#cbd5e1;
+        }
+
+        .progress{
+            height:10px;
+            margin-top:20px;
+            border-radius:20px;
+        }
+
+        #themeBtn{
+            border-radius:30px;
+            padding:10px 25px;
+            font-weight:600;
+        }
+
+        /* Stopwatch */
+
+        #stopwatch{
+            font-size:2.5rem;
+            font-weight:bold;
+            margin:20px 0;
+            color:#0f172a;
+        }
+
+        .dark-mode #stopwatch{
+            color:#00ffff;
+            text-shadow:
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+        #footer{
+            margin-top:20px;
+            color:#64748b;
+            font-size:14px;
+        }
+
+        .dark-mode #footer{
+            color:#cbd5e1;
+        }
+
+        @media(max-width:768px){
+
+            #clock{
+                padding:25px;
+            }
+
+            #time{
+                font-size:2.5rem;
+            }
+
+            #day{
+                font-size:1.5rem;
+            }
+
+            #title{
+                font-size:1.5rem;
+            }
+
+            #stopwatch{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+
+    <div id="clock">
+
+        <button id="themeBtn" class="btn btn-light mb-3" onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+
+        <div id="icon">⏰</div>
+
+        <h2 id="title">DIGITAL CLOCK</h2>
+
+        <div id="greeting"></div>
+
+        <div id="day"></div>
+
+        <div id="date"></div>
+
+        <div id="time"></div>
+
+        <div id="timezone">India Standard Time (IST)</div>
+
+        <div class="progress">
+            <div id="secBar" class="progress-bar bg-success"></div>
+        </div>
+
+        <hr class="my-4">
+
+        <h4>⏱ Stopwatch</h4>
+
+        <div id="stopwatch">00:00:00</div>
+
+        <div class="mt-3">
+            <button class="btn btn-success" onclick="startStopwatch()">Start</button>
+
+            <button class="btn btn-warning" onclick="stopStopwatch()">Stop</button>
+
+            <button class="btn btn-danger" onclick="resetStopwatch()">Reset</button>
+        </div>
+
+        <div id="footer">
+            Made with HTML, CSS, Bootstrap & JavaScript
+        </div>
+
+    </div>
+
+    <script>
+
+        function toggleTheme(){
+
+            const body = document.body;
+            const btn = document.getElementById("themeBtn");
+
+            if(body.classList.contains("light-mode")){
+
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+
+                btn.innerHTML = "☀️ Light Mode";
+                btn.classList.remove("btn-light");
+                btn.classList.add("btn-warning");
+
+            }else{
+
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
+
+                btn.innerHTML = "🌙 Dark Mode";
+                btn.classList.remove("btn-warning");
+                btn.classList.add("btn-light");
+            }
+        }
+
+        function printdate(){
+
+            let date = new Date();
+
+            let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+            let hours = date.getHours();
+
+            let ampm = hours >= 12 ? "PM" : "AM";
+
+            let greeting = "";
+
+            if(hours < 12){
+                greeting = "Good Morning ☀️";
+            }
+            else if(hours < 18){
+                greeting = "Good Afternoon 🌤️";
+            }
+            else{
+                greeting = "Good Evening 🌙";
+            }
+
+            let displayHour = hours % 12;
+            displayHour = displayHour || 12;
+
+            document.getElementById("greeting").textContent = greeting;
+
+            document.getElementById("day").textContent =
+                days[date.getDay()];
+
+            document.getElementById("date").textContent =
+                `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+
+            document.getElementById("time").textContent =
+                `${String(displayHour).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}:${String(date.getSeconds()).padStart(2,'0')} ${ampm}`;
+
+            document.getElementById("secBar").style.width =
+                (date.getSeconds()/60)*100 + "%";
+        }
+
+        printdate();
+        setInterval(printdate,1000);
+
+        /* Stopwatch */
+
+        let stopwatchInterval;
+        let seconds = 0;
+
+        function startStopwatch(){
+
+            clearInterval(stopwatchInterval);
+
+            stopwatchInterval = setInterval(() => {
+
+                seconds++;
+
+                let hrs = Math.floor(seconds / 3600);
+                let mins = Math.floor((seconds % 3600) / 60);
+                let secs = seconds % 60;
+
+                document.getElementById("stopwatch").textContent =
+                    `${String(hrs).padStart(2,'0')}:` +
+                    `${String(mins).padStart(2,'0')}:` +
+                    `${String(secs).padStart(2,'0')}`;
+
+            },1000);
+        }
+
+        function stopStopwatch(){
+            clearInterval(stopwatchInterval);
+        }
+
+        function resetStopwatch(){
+
+            clearInterval(stopwatchInterval);
+
+            seconds = 0;
+
+            document.getElementById("stopwatch").textContent =
+                "00:00:00";
+        }
+
+    </script>
+
+</body>
+</html>

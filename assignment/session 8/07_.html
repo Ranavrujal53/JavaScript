@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pop</title>
+</head>
+
+<body>
+    <h1>pop</h1>
+
+    <script>
+        let playlists = [
+            {
+                name: "Bollywood Vibes",
+                creator: "User A",
+                numberOfSongs: 50,
+                genre: "Bollywood"
+            },
+            {
+                name: "Gym Motivation",
+                creator: "User B",
+                numberOfSongs: 35,
+                genre: "EDM"
+            },
+            {
+                name: "Chill Lo-fi",
+                creator: "User C",
+                numberOfSongs: 60,
+                genre: "Lo-fi"
+            }
+        ];
+
+        let removedPlaylist = playlists.pop();
+
+        console.log("Removed Playlist:", removedPlaylist);
+
+        console.log("Updated Playlists:", playlists);
+    </script>
+</body>
+
+</html>

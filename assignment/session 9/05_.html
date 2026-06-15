@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parse</title>
+</head>
+<body>
+    <h1>parse</h1>
+
+    <script>
+        function channel(jsonstring){
+            return JSON.parse(jsonstring);
+        }
+
+        let jsondata = '["CodeWithHarry", "Apna College", "Traversy Media"]';
+
+        let result = channel(jsondata);
+        console.log(result);
+        
+    </script>
+</body>
+</html>

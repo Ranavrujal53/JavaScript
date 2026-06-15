@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function</title>
+</head>
+
+<body>
+    <h1>Arrow Function</h1>
+
+    <script>
+        const formatFollowers = (followers) => {
+            if (followers >= 1000000) {
+                return (followers / 1000000).toFixed(
+                    followers % 1000000 === 0 ? 0 : 1
+                ) + "M";
+            } else if (followers >= 1000) {
+                return (followers / 1000).toFixed(
+                    followers % 1000 === 0 ? 0 : 1
+                ) + "K";
+            } else {
+                return followers.toString()
+            }
+        };
+
+        console.log(formatFollowers(1500));      
+        console.log(formatFollowers(25000));     
+        console.log(formatFollowers(2000000));   
+        console.log(formatFollowers(3500000));   
+        console.log(formatFollowers(850)); 
+    </script>
+</body>
+
+</html>

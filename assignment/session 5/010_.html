@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            padding: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .menu-item p {
+            margin: 5px 0 0;
+            color: #e23744;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Zomato Menu --- using with the innerHTML</h1>
+
+    <script>
+        function showenu(name, price) {
+            return `
+                <div class="menu-item">
+                    <h3>${name}</h3>
+                    <p>₹${price}</p>
+                </div>
+            `;
+        }
+
+        document.body.innerHTML += showenu("Paneer Butter Masala", 250);
+        document.body.innerHTML += showenu("Veg Biryani", 180);
+        document.body.innerHTML += showenu("Masala Dosa", 120);
+    </script>
+</body>
+
+</html>

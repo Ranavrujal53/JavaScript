@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const favApps = [
+            { title: "YouTube", url: "https://youtube.com" },
+            { title: "Instagram", url: "https://instagram.com" },
+            { title: "Facebook", url: "https://facebook.com" },
+            { title: "WhatsApp", url: "https://whatsapp.com" },
+            { title: "Spotify", url: "https://spotify.com" }
+        ];
+
+        favApps.splice(2, 1, {
+            title: "netflix",
+            url: "https://netflix.com"
+        });
+
+        console.log(favApps);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Cart</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #cart {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .item {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Product Page 🛍️</h2>
+
+    <p><b>Product:</b> Nike Shoes</p>
+
+    <button id="addbtn">Add to Cart</button>
+
+    <div id="cart">
+        <h3>Cart 🛒</h3>
+        <div id="cartitems"></div>
+    </div>
+</div>
+
+<script>
+    function addToCart(productName) {
+        let cart = document.querySelector("#cartitems");
+
+        let item = document.createElement("div");
+        item.classList.add("item");
+        item.innerText = productName;
+
+        cart.appendChild(item);
+    }
+
+    let button = document.querySelector("#addbtn");
+
+    button.addEventListener("click", function () {
+        addToCart("Nike Shoes");
+    });
+</script>
+
+</body>
+</html>

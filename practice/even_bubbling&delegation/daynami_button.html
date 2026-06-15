@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Button Generator</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #btnContainer {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: #2980b9;
+    }
+
+    .active {
+      background: green !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Dynamic Button Generator</h2>
+
+<input type="text" id="btnText" placeholder="Enter button name">
+<button onclick="addButton()">Add Button</button>
+
+<div id="btnContainer"></div>
+
+<script>
+
+// Create Button Dynamically
+function addButton() {
+    let text = document.getElementById("btnText").value;
+
+    if(text === "") return;
+
+    let btn = document.createElement("button");
+    btn.classList.add("btn");
+    btn.innerText = text;
+
+    document.getElementById("btnContainer").appendChild(btn);
+
+    document.getElementById("btnText").value = "";
+}
+
+// Event Delegation (ONE listener for all buttons)
+document.getElementById("btnContainer").addEventListener("click", function(e){
+
+    if(e.target.classList.contains("btn")){
+        
+        // remove active from all buttons
+        let buttons = document.querySelectorAll(".btn");
+        buttons.forEach(btn => btn.classList.remove("active"));
+
+        // add active to clicked button
+        e.target.classList.add("active");
+
+        console.log("Clicked Button:", e.target.innerText);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
