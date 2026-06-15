@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Song Lyrics</title>
+</head>
+<body>
+
+<h1>Check Console for Lyrics</h1>
+
+<script>
+    function fetchSongLyrics(song, callback) {
+        setTimeout(() => {
+            const lyrics = `Lyrics of "${song}": Jai Hanuman Gyan Gun Sagar 🚩 Bhajan playing...`;
+            callback(lyrics);
+        }, 2000);
+    }
+
+    fetchSongLyrics("Hanuman Chalisa", function(result) {
+        console.log(result);
+    });
+</script>
+
+</body>
+</html>
