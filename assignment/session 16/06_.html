@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const products = [
+            { name: "Redmi Note 12", price: 15000 },
+            { name: "iPhone 14", price: 70000 },
+            { name: "Samsung Galaxy S23", price: 65000 },
+            { name: "Realme Narzo", price: 12000 }
+        ];
+
+        const formattedProducts = products.map(product =>
+            `Product: ${product.name}, Price: ₹${product.price}`
+        );
+
+        console.log(formattedProducts);
+    </script>
+</body>
+
+</html>

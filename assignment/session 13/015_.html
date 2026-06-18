@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Trace Example</title>
+</head>
+<body>
+
+    <script>
+        // Summary:
+        // The error occurred because an invalid Spotify URL was passed
+        // to the function. The stack trace shows that the error was
+        // thrown on line 8 inside checkPlaylistURL() and triggered
+        // when the function was called on line 14.
+
+        function checkPlaylistURL(url) {
+            if (!url.startsWith('https://open.spotify.com/')) {
+                throw new Error('Invalid Spotify URL');
+            }
+        }
+
+        checkPlaylistURL('https://youtube.com/watch?v=12345');
+    </script>
+
+</body>
+</html>

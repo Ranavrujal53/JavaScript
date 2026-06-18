@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
+
+
+<!-- You can write the description like this:
+
+**Request:**
+The browser sends an HTTP **GET request** to `https://jsonplaceholder.typicode.com/users` to retrieve user information from the server.
+
+**Response:**
+The server returns a **200 OK** status along with a JSON array containing user details such as ID, name, email, and address, which the browser can then process and display.
+
+### Short Version (2 Lines)
+
+1. The browser sent a GET request to the API endpoint to fetch user data.
+2. The server responded with a 200 OK status and returned user information in JSON format. -->

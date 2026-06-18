@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Albums</title>
+</head>
+
+<body>
+    <h1>Albums of User ID 2</h1>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/albums')
+            .then(response => response.json())
+            .then(albums => {
+
+                const userAlbums = albums.filter(album => album.userId === 2);
+
+                console.log("Albums for User ID 2:");
+
+                userAlbums.forEach(album => {
+                    console.log(album.title);
+                });
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+
+</html>

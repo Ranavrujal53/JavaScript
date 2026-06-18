@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Song Details</title>
+</head>
+
+<body>
+
+    <h1>Spotify Song Details</h1>
+
+    <p id="title"></p>
+    <p id="duration"></p>
+
+    <script type="module">
+
+        import {
+            formatSongTitle,
+            getSongDurationInMinutes
+        } from "./04_spotifyUtils.js";
+
+        const songTitle = "believer";
+        const songDuration = 204; // seconds
+
+        const formattedTitle = formatSongTitle(songTitle);
+        const formattedDuration = getSongDurationInMinutes(songDuration);
+
+        console.log("Song Title:", formattedTitle);
+        console.log("Duration:", formattedDuration);
+
+        document.getElementById("title").textContent =
+            "Song Title: " + formattedTitle;
+
+        document.getElementById("duration").textContent =
+            "Duration: " + formattedDuration;
+    </script>
+
+</body>
+
+</html>

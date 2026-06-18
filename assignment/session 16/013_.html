@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const cartItems = [
+            { name: "T-Shirt", price: 499 },
+            { name: "Jeans", price: 1299 },
+            { name: "Shoes", price: 1999 },
+            { name: "Cap", price: 299 }
+        ];
+
+        const totalPrice = cartItems
+            .map(item => item.price)
+            .reduce((acc, price) => acc + price, 0);
+
+        console.log(totalPrice);
+    </script>
+</body>
+
+</html>

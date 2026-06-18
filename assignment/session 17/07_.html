@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Instagram Stories</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #fafafa;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .story {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .remove {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="storyContainer">
+        <div class="story">A<button class="remove">x</button></div>
+        <div class="story">B<button class="remove">x</button></div>
+        <div class="story">C<button class="remove">x</button></div>
+        <div class="story">D<button class="remove">x</button></div>
+    </div>
+
+    <script>
+        const storyContainer = document.getElementById("storyContainer");
+
+        storyContainer.addEventListener("click", function (e) {
+            if (e.target.classList.contains("remove")) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

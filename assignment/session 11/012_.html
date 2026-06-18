@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Function that returns a Promise
+        function processPayment() {
+
+            return new Promise((resolve, reject) => {
+
+                // Simulate payment processing delay
+                setTimeout(() => {
+
+                    // Payment successful
+                    resolve("Payment successful!");
+
+                    // If you want to simulate an error, use:
+                    // reject("Payment failed!");
+
+                }, 1000);
+
+            });
+
+        }
+
+        // Call the function
+        processPayment()
+
+            .then((message) => {
+                console.log(message);
+            })
+
+            .catch((error) => {
+                console.log(error);
+            })
+
+            .finally(() => {
+                console.log("Payment process completed.");
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const products = [
+            "iPhone 15",
+            "Samsung Galaxy S24",
+            "Realme Narzo",
+            "iPhone 14",
+            "OnePlus 12"
+        ];
+
+        function searchProducts(products, searchTerm, callback) {
+            setTimeout(() => {
+                const result = products.filter(product =>
+                    product.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                callback(result);
+            }, 1000);
+        }
+
+        searchProducts(products, "iphone", (result) => {
+            console.log("Callback Result:");
+            console.log(result);
+        });
+
+        
+    </script>
+</body>
+
+</html>
