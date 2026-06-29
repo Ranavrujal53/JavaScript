@@ -5,26 +5,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Mode Toggle</title>
+    <style>
+        /* Modern, centered layout */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+            /* Initial Light Mode Styles */
+            background-color: white;
+            color: black;
+            
+            /* This makes the background color fade smoothly instead of snapping instantly */
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Clean, modern button design */
+        #togglebtn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            
+            /* Initial button styles (for Light Mode context) */
+            background-color: #333;
+            color: white;
+        }
+
+        #togglebtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        #togglebtn:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
 <body>
     <h1>Dark mode and Light Mode</h1>
 
     <button id="togglebtn" onclick="togglemode()">Dark Mode</button>
+
     <script>
         function togglemode() {
             let button = document.getElementById("togglebtn");
 
             if (document.body.style.backgroundColor === "black") {
+
                 document.body.style.backgroundColor = "white";
                 document.body.style.color = "black";
-
                 button.textContent = "Dark Mode";
+                
+                button.style.backgroundColor = "#333";
+                button.style.color = "white";
             } else {
                 document.body.style.backgroundColor = "black";
                 document.body.style.color = "white";
-
                 button.textContent = "Light Mode";
+                
+                button.style.backgroundColor = "#eee";
+                button.style.color = "black";
             }
         }
     </script>

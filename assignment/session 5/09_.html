@@ -12,7 +12,7 @@
     <script>
         
         function createLikeButton(label, color) {
-            const button = document.createElement("button");
+            let button = document.createElement("button");
 
             button.textContent = label;
             button.style.backgroundColor = color;
@@ -28,7 +28,7 @@
         }
 
        
-        const likeBtn = createLikeButton("Like", "blue");
+        let likeBtn = createLikeButton("Like", "blue");
         document.body.appendChild(likeBtn);
     </script>
 

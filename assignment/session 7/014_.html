@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Add to Cart Event Logger</title>
   <style>
@@ -27,33 +28,35 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="product-card">
-  <h3>Mobile Phone</h3>
-  <p>₹15,999</p>
+  <div class="product-card">
+    <h3>Mobile Phone</h3>
+    <p>₹15,999</p>
 
-  <button class="btn" id="addToCartBtn">Add to Cart</button>
-</div>
+    <button class="btn" id="addToCartBtn">Add to Cart</button>
+  </div>
 
-<p id="log"></p>
+  <p id="log"></p>
 
-<script>
-  const btn = document.getElementById("addToCartBtn");
-  const log = document.getElementById("log");
+  <script>
+    const btn = document.getElementById("addToCartBtn");
+    const log = document.getElementById("log");
 
-  ["click", "mouseover", "mouseout"].forEach(eventType => {
-    btn.addEventListener(eventType, function(event) {
-      console.log("Event Type:", event.type);
-      console.log("X:", event.clientX, "Y:", event.clientY);
+    ["click", "mouseover", "mouseout"].forEach(eventType => {
+      btn.addEventListener(eventType, function (event) {
+        console.log("Event Type:", event.type);
+        console.log("X:", event.clientX, "Y:", event.clientY);
 
-      log.textContent =
-        "Event: " + event.type +
-        " | X: " + event.clientX +
-        " | Y: " + event.clientY;
+        log.textContent =
+          "Event: " + event.type +
+          " | X: " + event.clientX +
+          " | Y: " + event.clientY;
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
