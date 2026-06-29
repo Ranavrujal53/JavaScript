@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Link</title>
+
+    <style>
+        /* --- Base & Unique Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            /* Beautiful animated light gradient matching main page */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            color: #2d3436;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+
+        /* --- Dark Mode Body --- */
+        body.dark {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #f1f2f6;
+        }
+
+        /* --- Glassmorphism Card (Form Box) --- */
+        .box {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 35px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: background 0.3s ease, border 0.3s ease;
+        }
+
+        body.dark .box {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* --- Input Styling --- */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        input:focus {
+            border-color: #6c5ce7;
+            background: white;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.15);
+        }
+
+        body.dark input {
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark input:focus {
+            border-color: #00d2d3;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* --- Update Button Styling --- */
+        button {
+            background: #6c5ce7;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        button:hover {
+            background: #5b4bc4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        body.dark button {
+            background: #00d2d3;
+            color: #2d3436;
+            box-shadow: 0 4px 15px rgba(0, 210, 211, 0.2);
+        }
+
+        body.dark button:hover {
+            background: #01b1b3;
+        }
+
+        /* --- Cancel Link Link Styling --- */
+        .cancel-lnk {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #636e72;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .cancel-lnk:hover {
+            color: #2d3436;
+        }
+
+        body.dark .cancel-lnk {
+            color: #b2bec3;
+        }
+
+        body.dark .cancel-lnk:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>Update Link</h2>
+
+        <div class="input-group">
+            <input type="text" id="title" placeholder="Link Title">
+            <input type="text" id="url" placeholder="URL Link">
+        </div>
+
+        <button onclick="updateLink()">
+            Save Changes
+        </button>
+
+        <a href="insert.html" class="cancel-lnk">Cancel and Go Back</a>
+
+    </div>
+
+    <script>
+        loadTheme();
+
+        function loadTheme() {
+            let theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+            }
+        }
+
+
+
+        let id = localStorage.getItem("editId");
+
+        let links = JSON.parse(localStorage.getItem("links")) || [];
+
+        document.getElementById("title").value = links[id].title;
+
+        document.getElementById("url").value = links[id].url;
+
+        function updateLink() {
+
+            let title = document.getElementById("title").value.trim();
+
+            let url = document.getElementById("url").value.trim();
+
+            if (title === "" || url === "") {
+                alert("All fields are required");
+                return;
+            }
+
+            let pattern = /^(https?:\/\/)[^\s$.?#].[^\s]*$/i;
+
+            if (!pattern.test(url)) {
+                alert("Enter Valid URL");
+                return;
+            }
+
+            links[id] = {
+                title: title,
+                url: url
+            };
+
+            localStorage.setItem("links", JSON.stringify(links));
+
+            alert("Link Updated Successfully");
+
+            window.location.href = "insert.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bio-Stack Builder</title>
+
+    <style>
+        /* --- Base & Unique Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            /* Beautiful animated light gradient */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            color: #2d3436;
+            min-height: 100vh;
+            transition: background 0.6s ease, color 0.6s ease;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* --- Dark Mode Body --- */
+        body.dark {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #f1f2f6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* --- Header & Toggle Switch --- */
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: -10px;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.6);
+            transition: 0.3s;
+        }
+
+        body.dark .theme-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Custom Sleek Toggle Switch */
+        .toggle-track {
+            width: 54px;
+            height: 28px;
+            background-color: #cbd5e1;
+            border-radius: 50px;
+            position: relative;
+            transition: background-color 0.4s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .toggle-thumb {
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        body.dark .toggle-track {
+            background-color: #00d2d3; /* vibrant cyan for dark mode active */
+        }
+
+        body.dark .toggle-thumb {
+            transform: translateX(26px);
+        }
+
+        /* --- Profile Section --- */
+        .profile {
+            text-align: center;
+        }
+
+        .profile img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark .profile img {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile h2 {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- Glassmorphism Card --- */
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: background 0.3s ease, border 0.3s ease;
+        }
+
+        body.dark .card {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Inputs --- */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        input:focus {
+            border-color: #6c5ce7;
+            background: white;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.15);
+        }
+
+        body.dark input {
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.05);
+        }
+
+        body.dark input:focus {
+            border-color: #00d2d3;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        body.dark input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- Add Button --- */
+        .add-btn {
+            background: #6c5ce7;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .add-btn:hover {
+            background: #5b4bc4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        body.dark .add-btn {
+            background: #00d2d3;
+            color: #2d3436;
+            box-shadow: 0 4px 15px rgba(0, 210, 211, 0.2);
+        }
+
+        body.dark .add-btn:hover {
+            background: #01b1b3;
+        }
+
+        /* --- Rendered Link Items (from JS) --- */
+        #linkList {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            gap: 10px;
+        }
+
+        .link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark .link {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: none;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Main Link Text */
+        .link a:first-child {
+            flex-grow: 1;
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 600;
+            font-size: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body.dark .link a:first-child {
+            color: #f1f2f6;
+        }
+
+        /* Update Link Styling */
+        .link a[href="update.html"] {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: #636e72;
+            background: #dfe6e9;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .link a[href="update.html"]:hover {
+            background: #b2bec3;
+            color: #2d3436;
+        }
+
+        body.dark .link a[href="update.html"] {
+            background: rgba(255,255,255,0.1);
+            color: #b2bec3;
+        }
+        
+        body.dark .link a[href="update.html"]:hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            background: #ff7675;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #d63031;
+        }
+
+        body.dark .delete-btn {
+            background: rgba(255, 118, 117, 0.2);
+            color: #ff7675;
+        }
+
+        body.dark .delete-btn:hover {
+            background: rgba(255, 118, 117, 0.4);
+            color: #ffcccc;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media(max-width: 500px) {
+            .container {
+                padding: 0 10px;
+            }
+            .link {
+                flex-wrap: wrap;
+            }
+            .link a:first-child {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header-actions">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                <span class="theme-text">Theme</span>
+                <div class="toggle-track">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </button>
+        </div>
+
+        <div class="profile">
+            <!-- <img src="https://via.placeholder.com/120" alt="Profile Image"> -->
+            <h2>Creator Bio-Stack</h2>
+        </div>
+
+        <div class="card">
+            <div class="input-group">
+                <input type="text" id="title" placeholder="Link Title (e.g., My Portfolio)">
+                <input type="text" id="url" placeholder="URL (e.g., https://example.com)">
+            </div>
+
+            <button class="add-btn" onclick="addLink()">
+                Add New Link
+            </button>
+
+            <div id="linkList"></div>
+        </div>
+
+    </div>
+
+    <script>
+        loadLinks();
+        loadTheme();
+
+        function addLink() {
+
+            let title = document.getElementById("title").value.trim();
+            let url = document.getElementById("url").value.trim();
+
+            if (title === "" || url === "") {
+                alert("All fields are required");
+                return;
+            }
+
+            let pattern = /^(https?:\/\/)[^\s$.?#].[^\s]*$/i;
+
+            if (!pattern.test(url)) {
+                alert("Enter Valid URL");
+                return;
+            }
+
+            let links = JSON.parse(localStorage.getItem("links")) || [];
+
+            links.push({
+                title: title,
+                url: url
+            });
+
+            localStorage.setItem("links", JSON.stringify(links));
+
+            document.getElementById("title").value = "";
+            document.getElementById("url").value = "";
+
+            loadLinks();
+        }
+
+        function loadLinks() {
+
+            let links = JSON.parse(localStorage.getItem("links")) || [];
+
+            let output = "";
+
+            links.forEach((link, i) => {
+
+                output += `
+        <div class="link">
+
+            <a href="${link.url}" target="_blank">
+                ${link.title}
+            </a>
+
+           <a href="update.html" onclick="saveEditId(${i})">Update</a>
+
+            <button class="delete-btn"
+            onclick="deleteLink(${i})">
+            Delete
+            </button>
+
+        </div>
+        `;
+            });
+
+            document.getElementById("linkList").innerHTML = output;
+        }
+
+        function saveEditId(id) {
+
+            localStorage.setItem("editId", id);
+        }
+
+        function deleteLink(id) {
+
+            let check = confirm("Are you sure you want to delete this link?");
+
+            if (check) {
+
+                let links = JSON.parse(localStorage.getItem("links")) || [];
+
+                links.splice(id, 1);
+
+                localStorage.setItem("links", JSON.stringify(links));
+
+                loadLinks();
+
+                alert("Link Deleted Successfully!");
+            }
+        }
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark");
+
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+            }
+            else {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        function loadTheme() {
+
+            let theme = localStorage.getItem("theme");
+
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Profile Link</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 15px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Add Profile Link</h1>
+
+    <form onsubmit="return saveLink()">
+        <label for="title">Title</label><br>
+        <input type="text" id="title"><br>
+
+        <label for="url">URL</label><br>
+        <input type="text" id="url" placeholder="https://example.com"><br>
+
+        <span id="error" class="error"></span><br><br>
+
+        <button type="submit">Add Link</button>
+    </form>
+
+    <br>
+    <a href="show.html">View Profile Links</a>
+
+    <script>
+        function saveLink(){
+            let title = document.getElementById("title").value.trim();
+            let url = document.getElementById("url").value.trim();
+             
+            if (title == "" || url == "") {
+                alert("All fields are required");
+                return false;
+            }
+
+            let regex = /^https:\/\/.+/;
+
+            if(!regex.test(url)){
+                document.getElementById("error").innerHTML = "URL must start with https://";
+                return false;
+            }
+
+            let links = JSON.parse(localStorage.getItem("links")) || [];
+
+            let obj = {
+                title: title,
+                url: url
+            };
+
+            links.push(obj);
+            localStorage.setItem("links", JSON.stringify(links));
+
+            alert("Link Added Successfully");
+
+            document.getElementById("title").value = "";
+            document.getElementById("url").value = "";
+            document.getElementById("error").innerHTML = "";
+
+            return false;
+        }
+    </script>
+</body>
+</html>
