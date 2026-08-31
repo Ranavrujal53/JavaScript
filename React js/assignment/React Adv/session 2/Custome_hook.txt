@@ -1,0 +1,47 @@
+A custom hook like **`useFetchData`** helps us write the fetching logic **once** and reuse it in many React components.
+
+Instead of writing `fetch()`, `loading`, `error`, and `data` states separately in every component, we put all that common logic inside `useFetchData`.
+
+### How it helps
+
+* **Code reusability:** Write the fetch logic only once.
+* **Less code:** Components become smaller and easier to understand.
+* **Consistent behavior:** Loading and error handling work the same way everywhere.
+* **Easy maintenance:** If the fetching logic changes, we update the hook instead of every component.
+
+### Example 1: Product List
+
+In a Flipkart-style app, we can use `useFetchData` to fetch all products:
+
+```jsx
+const { data, loading, error } = useFetchData(
+  "https://fakestoreapi.com/products"
+);
+```
+
+Then `ProductList` only focuses on displaying the products.
+
+### Example 2: Product Details
+
+The same hook can fetch information about one particular product:
+
+```jsx
+const { data, loading, error } = useFetchData(
+  `https://fakestoreapi.com/products/${id}`
+);
+```
+
+Here, `ProductDetails` doesn't need to write its own `fetch()` logic.
+
+### In simple words
+
+**`useFetchData` is like a reusable fetching machine.**
+We give it a URL, and it gives us:
+
+```text
+data → fetched information
+loading → whether data is loading
+error → whether fetching failed
+```
+
+So, components such as **ProductList, ProductDetails, CategoryProducts, and SearchResults** can all use the same hook instead of repeating the same code.

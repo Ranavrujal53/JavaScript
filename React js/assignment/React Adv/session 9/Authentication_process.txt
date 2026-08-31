@@ -1,0 +1,42 @@
+For **Question 5**, you don't need to write any code. You can submit the following step-by-step process. This follows the current Firebase Web Authentication documentation. ([Firebase][1])
+
+### Firebase Authentication — Step-by-Step
+
+1. **Open the Firebase Console** and select your `FirebaseReactDemo` project.
+
+2. Go to **Authentication** from the Firebase project menu and click **Get started** if Authentication has not been enabled yet. ([Firebase][1])
+
+3. Open the **Sign-in method** section.
+
+4. Select the authentication provider you want to use, such as **Email/Password** or **Google**. Enable the provider and save the settings. ([Firebase][2])
+
+5. Make sure Firebase is already initialized in the React application and the Firebase SDK is installed.
+
+6. Add the **Firebase Authentication SDK** to the React application and initialize the Authentication service. Firebase's current Web SDK uses the modular `firebase/auth` API. ([Firebase][1])
+
+7. Create a **Sign Up/Register** page where users can enter their email and password. Use Firebase Authentication's email/password sign-up functionality to create the account. ([Firebase][1])
+
+8. Create a **Login** page where existing users can enter their email and password and sign in.
+
+9. Add a **Logout** button so authenticated users can sign out of the application.
+
+10. Use Firebase's **authentication-state observer** to detect when a user logs in or logs out. This allows React components to immediately update based on the current authentication state. ([Firebase][1])
+
+11. Display the logged-in user's information, such as their email or user ID, in the application.
+
+12. Test the complete authentication flow:
+
+* Register
+* Login
+* Check logged-in user
+* Logout
+* Login again
+
+### Short submission version
+
+> First, enable Firebase Authentication in the Firebase Console and select a sign-in provider such as Email/Password. Then initialize Firebase Authentication in the React application using the Firebase SDK. Create registration, login, and logout functionality and use an authentication-state observer to track the user's login status. Finally, test the complete authentication flow and verify the user in the Firebase Console. ([Firebase][1])
+
+**Official documentation:** [Firebase Authentication for Web](https://firebase.google.com/docs/auth/web/start?utm_source=chatgpt.com)
+
+[1]: https://firebase.google.com/docs/auth/web/start?utm_source=chatgpt.com "Get Started with Firebase Authentication on Websites"
+[2]: https://firebase.google.com/docs/auth/web/password-auth?hl=en&utm_source=chatgpt.com "Authenticate with Firebase using Password-Based Accounts using Javascript"

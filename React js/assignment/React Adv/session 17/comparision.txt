@@ -1,0 +1,43 @@
+## Question 5: Formik + Yup vs Manual Form — Theory Based
+
+**Formik + Yup** makes form handling and validation easier compared to manually managing a form with React's `useState` and custom validation.
+
+### 1. Form State Management
+
+**Formik + Yup:**
+Formik manages the form values, field changes, submission, errors, and touched fields automatically. This reduces the amount of state-management code we need to write.
+
+**Manual Form:**
+With `useState`, we need to create separate state variables for fields such as playlist name, description, and genre. We also need to write `onChange` handlers manually.
+
+---
+
+### 2. Form Validation
+
+**Formik + Yup:**
+Yup allows us to define all validation rules in a single validation schema. For example, we can easily specify that the playlist name and genre are required.
+
+**Manual Form:**
+We need to create our own validation function and write multiple `if` conditions for checking required fields, character limits, and other rules. As the form becomes larger, this can make the code lengthy.
+
+---
+
+### 3. Error Handling and Maintenance
+
+**Formik + Yup:**
+Formik provides useful properties such as `errors` and `touched`. These make it easy to display validation messages only when the user has interacted with a field. Since validation rules are centralized in Yup, the form is easier to maintain and modify.
+
+**Manual Form:**
+We usually need additional state variables and custom logic to store and display errors. When more fields are added, the amount of code and maintenance increases.
+
+---
+
+### Short Conclusion
+
+**Formik + Yup has three major advantages:**
+
+1. **Less code for managing form state**
+2. **Cleaner and centralized validation**
+3. **Easier error handling and maintenance**
+
+Therefore, **Formik + Yup is especially useful for medium and large forms**, where manually managing every field, validation rule, and error can become repetitive and difficult to maintain.

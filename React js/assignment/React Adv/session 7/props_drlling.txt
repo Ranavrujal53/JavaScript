@@ -1,0 +1,4 @@
+Prop drilling would require passing the theme prop through multiple components like Feed and PostContainer just to reach PostCard.
+This makes the code harder to manage because intermediate components must receive and forward props they don't actually use.
+Using ThemeContext allows Navbar, PostCard, and ToggleThemeButton to access the theme directly.
+Therefore, ThemeContext makes sharing and updating the theme simpler without passing props through every component.
