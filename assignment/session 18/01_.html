@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Console Notification Demo</title>
+</head>
+<body>
+
+    <h1>Instagram Post Upload Demo</h1>
+
+    <button onclick="uploadpost()">Upload Post</button>
+
+    <script>
+        function uploadpost() {
+            let image_Uploaded = true;
+            let caption = "";
+
+            if (image_Uploaded) {
+                console.log("Instagram: Your post has been uploaded successfully!");
+            } else {
+                console.error("Instagram Error: Image failed to upload. Please try again.");
+            }
+
+            if (!caption.trim()) {
+                console.warn("Instagram Warning: Caption is missing. Consider adding a caption before posting.");
+            }
+        }
+
+        console.log("Instagram: Your post has been uploaded successfully!");
+        console.warn("Instagram Warning: Caption is missing. Consider adding a caption before posting.");
+        console.error("Instagram Error: Image failed to upload. Please try again.");
+    </script>
+
+</body>
+</html>

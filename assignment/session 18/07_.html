@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging Breakpoints</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #1c1c1c;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 450px;
+        }
+        .logo {
+            color: #cb202d;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #4f4f4f;
+            margin-bottom: 25px;
+        }
+        button {
+            background-color: #cb202d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #a81a24;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">zomato</div>
+        <h2>Breakpoint Debugging Lab</h2>
+        <button onclick="triggerCartBug()">Add 0 Items to Cart</button>
+    </div>
+
+    <script>
+        function addToCart(item, quantity) {
+            if (quantity === 0) {
+                throw new Error("Bug: Cannot calculate total price for 0 items.");
+            }
+            console.log(`Added ${quantity} x ${item} successfully.`);
+        }
+
+        function triggerCartBug() {
+            addToCart("Truffle Fries", 0);
+        }
+    </script>
+</body>
+</html>

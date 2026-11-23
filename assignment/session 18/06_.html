@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Cart Validation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #1c1c1c;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 450px;
+        }
+        .logo {
+            color: #cb202d;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #4f4f4f;
+            margin-bottom: 25px;
+        }
+        .instruction-box {
+            background-color: #f4f4f5;
+            border-left: 5px solid #cb202d;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        kbd {
+            background: #e1e1e6;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">zomato</div>
+        <h2>Cart Logging System</h2>
+        
+        <div class="instruction-box">
+            <strong>Check your Developer Console:</strong>
+            <p>Press <kbd>F12</kbd> (or right-click and choose <strong>Inspect</strong>) and head over to the <strong>Console</strong> tab to see the custom log, warning, and error outputs.</p>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productName, quantity) {
+            if (quantity < 0) {
+                console.error(`Invalid Quantity Error: Cannot add ${quantity} items of "${productName}" to the cart.`);
+            } else if (quantity === 0) {
+                console.warn(`Cart Warning: You are trying to add 0 items of "${productName}".`);
+            } else {
+                console.log(`%c Success: Added ${quantity} x "${productName}" to your cart!`, "color: #27ae60; font-weight: bold;");
+            }
+        }
+
+        console.log("%c TESTING CART LOGGING ", "background: #1c1c1c; color: white; padding: 4px; border-radius: 3px;");
+
+        addToCart("Butter Chicken", 2);
+        addToCart("Garlic Naan", 0);
+        addToCart("Mango Lassi", -3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Error Handling Example</title>
+</head>
+<body>
+
+    <h1>Payment Processing Example</h1>
+    <button onclick="placeOrder()">Place Order</button>
+
+    <script>
+        function placeOrder() {
+            try {
+                console.log("Placing order...");
+                confirmOrder();
+            } catch (error) {
+                console.error("Error Message:", error.message);
+                console.error("Stack Trace:");
+                console.error(error.stack);
+
+                alert("Order could not be completed: " + error.message);
+            }
+        }
+
+        function confirmOrder() {
+            console.log("Confirming order...");
+            processPayment();
+        }
+
+        function processPayment() {
+            console.log("Processing payment...");
+
+            // Simulate a payment failure
+            throw new Error("Payment failed");
+        }
+    </script>
+
+</body>
+</html>

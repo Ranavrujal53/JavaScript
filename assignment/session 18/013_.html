@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed JSON Parse Example</title>
+</head>
+<body>
+
+    <h1>Fixed JavaScript Example</h1>
+
+    <script>
+        function getUser() {
+            return fetchUser();
+        }
+
+        function fetchUser() {
+            const userData = '{"name":"Rana","age":20,"city":"Navsari"}';
+
+            return JSON.parse(userData);
+        }
+
+        const user = getUser();
+
+        console.log("User Data:", user);
+        console.log("Name:", user.name);
+        console.log("Age:", user.age);
+        console.log("City:", user.city);
+    </script>
+
+</body>
+</html>

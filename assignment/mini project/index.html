@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Shelf</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Resource Shelf</h1>
+            <p>Save and organize your useful learning resources.</p>
+        </div>
+
+        <div class="header-actions">
+            <button type="button" id="themeToggle" class="theme-btn">
+                Switch Theme
+            </button>
+
+            <a href="qa.html" class="qa-link">QA Tests</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="form-section">
+            <h2 id="formHeading">Add New Resource</h2>
+
+            <form id="resourceForm">
+
+                <div class="form-group">
+                    <label for="title">Resource Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Enter resource title"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="url">Resource URL</label>
+                    <input
+                        type="text"
+                        id="url"
+                        name="url"
+                        placeholder="https://example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="Enter subject"
+                        required
+                    >
+                </div>
+
+                <p id="formError" class="error-message" role="alert"></p>
+
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="primary-btn">
+                        Add Resource
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelEdit"
+                        class="secondary-btn"
+                        hidden
+                    >
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="shelf-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Resources</h2>
+                    <p>All your saved resources appear here.</p>
+                </div>
+
+                <span id="resourceCount" class="count">0 Resources</span>
+            </div>
+
+            <div id="shelf" class="resource-grid"></div>
+
+            <p id="emptyMessage" class="empty-message">
+                No resources available. Add your first resource!
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Resource Shelf &copy; 2026 | Manage Your Learning Resources</p>
+    </footer>
+
+</body>
+</html>

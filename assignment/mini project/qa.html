@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resource Shelf | QA Tests</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .qa-container {
+            max-width: 1000px;
+            width: 92%;
+            margin: 40px auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .qa-container h1 {
+            margin-bottom: 10px;
+        }
+
+        .qa-description {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .qa-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .qa-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .qa-table th,
+        .qa-table td {
+            padding: 13px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .qa-table th {
+            background: var(--bg);
+        }
+
+        .pass {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .fail {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        .qa-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .summary-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px 20px;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .summary-item strong {
+            display: block;
+            font-size: 22px;
+            margin-top: 8px;
+        }
+
+        .run-btn {
+            padding: 11px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .run-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .qa-back {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .qa-container {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <script type="module" src="qa.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Resource Shelf QA</h1>
+            <p>Automated form validation testing.</p>
+        </div>
+
+        <a href="index.html" class="qa-link">Back to Shelf</a>
+    </header>
+
+    <main class="qa-container">
+
+        <h1>QA Test Results</h1>
+
+        <p class="qa-description">
+            Test title, subject and URL validation.
+        </p>
+
+        <button type="button" id="runTests" class="run-btn">
+            Run All Tests
+        </button>
+
+        <div class="qa-summary">
+
+            <div class="summary-item">
+                Total Tests
+                <strong id="totalTests">0</strong>
+            </div>
+
+            <div class="summary-item">
+                Passed
+                <strong id="passedTests">0</strong>
+            </div>
+
+            <div class="summary-item">
+                Failed
+                <strong id="failedTests">0</strong>
+            </div>
+
+        </div>
+
+        <div class="qa-table-wrapper">
+
+            <table class="qa-table">
+
+                <thead>
+                    <tr>
+                        <th>Test No.</th>
+                        <th>Test Case</th>
+                        <th>Expected Result</th>
+                        <th>Actual Result</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="testResults">
+
+                    <tr>
+                        <td colspan="5">Click Run All Tests to start.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <a href="index.html" class="qa-back">
+            ← Back to Resource Shelf
+        </a>
+
+    </main>
+
+</body>
+</html>

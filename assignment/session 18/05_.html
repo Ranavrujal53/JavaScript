@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #1c1c1c;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 450px;
+        }
+        .logo {
+            color: #cb202d;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #4f4f4f;
+            margin-bottom: 25px;
+        }
+        .instruction-box {
+            background-color: #f4f4f5;
+            border-left: 5px solid #cb202d;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        kbd {
+            background: #e1e1e6;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">zomato</div>
+        <h2>Admin Live Order Dashboard</h2>
+        
+        <div class="instruction-box">
+            <strong>To view the live orders array table:</strong>
+            <p>1. Right-click anywhere on this page and select <strong>Inspect</strong> (or press <kbd>F12</kbd>).</p>
+            <p>2. Click on the <strong>Console</strong> tab at the top of the developer tools window.</p>
+        </div>
+    </div>
+
+    <script>
+        const foodOrders = [
+            { orderId: "ZOM-9821", itemName: "Chicken Biryani", price: 299 },
+            { orderId: "ZOM-4310", itemName: "Paneer Butter Masala & Naan", price: 245 },
+            { orderId: "ZOM-7752", itemName: "Loaded Cheese Burst Pizza", price: 420 },
+            { orderId: "ZOM-1104", itemName: "Masala Dosa with Filter Coffee", price: 150 },
+            { orderId: "ZOM-6593", itemName: "Chocolate Sizzler Brownie", price: 185 }
+        ];
+
+        
+        console.log(
+            "%c ZOMATO ADMIN DASHBOARD - LIVE ORDERS ", 
+            "background: #cb202d; color: white; font-weight: bold; padding: 6px 12px; border-radius: 4px; font-size: 12px;"
+        );
+
+        console.table(foodOrders);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+Error Message
+Uncaught SyntaxError: "undefined" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at fetchUser (index.html:18)
+    at getUser (index.html:13)
+Explanation
+
+This error occurs because JSON.parse() expects a valid JSON string, but it received undefined instead.
+
+In the code:
+
+return JSON.parse(undefined);
+
+undefined is not a JSON string, so JavaScript throws a SyntaxError.
+
+How to Fix It
+
+Pass a valid JSON string to JSON.parse(), for example:
+
+return JSON.parse('{"name":"Rana","age":20}');
+
+Or check that the value exists before parsing:
+
+function fetchUser() {
+    const data = '{"name":"Rana"}';
+
+    if (data) {
+        return JSON.parse(data);
+    }
+
+    return null;
+}
+Short Answer for Assignment
+
+Error: Uncaught SyntaxError: "undefined" is not valid JSON
+
+Meaning: JSON.parse() was given undefined instead of a valid JSON string.
+
+Fix: Ensure that JSON.parse() receives a valid JSON string or check that the value is not undefined before parsing it.

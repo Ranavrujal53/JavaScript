@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resource Shelf</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="validate.js" defer></script>
+    <script src="app.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+
+            <h1>Resource Shelf</h1>
+
+            <p>Save and manage your learning resources.</p>
+
+        </header>
+
+        <section class="form-section">
+
+            <h2>Add New Resource</h2>
+
+            <form id="resourceForm" novalidate>
+
+                <div class="form-group">
+
+                    <label for="title">Resource Title</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter resource title"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="url">Resource URL</label>
+
+                    <input
+                        type="url"
+                        id="url"
+                        placeholder="https://example.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="subject">Select Subject</label>
+
+                    <select id="subject">
+
+                        <option value="">Select Subject</option>
+                        <option value="Maths">Maths</option>
+                        <option value="Science">Science</option>
+                        <option value="HTML & CSS">HTML & CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                        <option value="Django">Django</option>
+                        <option value="React">React</option>
+                        <option value="Database">Database</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+                <p id="formError" role="alert"></p>
+
+                <button type="submit" id="addButton">
+                    Add Resource
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="shelf-section">
+
+            <h2>My Saved Resources</h2>
+
+            <div id="shelf"></div>
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>

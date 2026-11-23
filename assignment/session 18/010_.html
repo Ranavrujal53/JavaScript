@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Stack Trace Example</title>
+</head>
+<body>
+
+    <h1>JavaScript Stack Trace Example</h1>
+
+    <button onclick="placeOrder()">Place Order</button>
+
+    <script>
+        function placeOrder() {
+            console.log("placeOrder() called");
+            confirmOrder();
+        }
+
+        function confirmOrder() {
+            console.log("confirmOrder() called");
+            processPayment();
+        }
+
+        function processPayment() {
+            console.log("processPayment() called");
+
+            throw new Error("Payment failed");
+        }
+        try {
+            placeOrder();
+        } catch (error) {
+            console.error("Error Message:", error.message);
+            console.error("Stack Trace:");
+            console.error(error.stack);
+        }
+    </script>
+
+</body>
+</html>

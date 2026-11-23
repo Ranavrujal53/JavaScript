@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Ram Songs</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9933, #ffcc80);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 900px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #d35400;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        thead {
+            background: #d35400;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #ffe0b2;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🚩 Lord Ram Songs List 🚩</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Song Title</th>
+                    <th>Artist</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody id="songTable"></tbody>
+        </table>
+    </div>
+
+    <script src="03_song.js"></script>
+
+</body>
+
+</html>
